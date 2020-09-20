@@ -1,0 +1,28 @@
+name: Update VRMS data
+
+# Run this action every day at 2am Pacific (10 am UTC)
+on: push
+  # schedule:
+  #   - cron: '0 10 * * *'
+
+jobs:
+  vrms_data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # Use an action (`my-action`) in your repository
+    - name: Save sheet-data.json
+      run: curl -o sheet-data.json https://sheets.googleapis.com/v4/spreadsheets/1tj6eQlVLFgmskoXouVt87POxYVwR1yWT2vOSQEPyDtg/values/Responses?key=AIzaSyBoxkYpxtcUk6b3wiZQ62N17x_C3s0BTKU
+
+    - uses: stefanzweifel/git-auto-commit-action@v3.0.0
+      with:
+        # Optional glob pattern of files which should be added to the commit
+        file_pattern: sheet-data.json
+
+        commit_message: Update sheet data
+
+        # # Optional commit user and author settings
+        # commit_author: GitHub Actions Bot <hackforla-bot@hackforla.org>
+
