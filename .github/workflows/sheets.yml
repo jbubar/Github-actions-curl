@@ -1,4 +1,4 @@
-name: Update VRMS data
+name: Update sheets data
 
 # Run this action every day at 2am Pacific (10 am UTC)
 on: push

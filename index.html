@@ -12,6 +12,7 @@
 			.then(response => response.json())
 			.then(data => {
 				build(data);
+				console.log(data);
 			});
 		function build(data){
 			let container = document.querySelector('div');
